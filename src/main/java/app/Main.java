@@ -16,7 +16,7 @@ public class Main {
                 // Inicializa o modelo, view e controller
                 CalculoHorasExtrasModel model = new CalculoHorasExtrasModel(0, 0, 0, 50); // Iniciando com valores padrões
                 CalculoHorasExtrasView view = new CalculoHorasExtrasView();
-                CalculoHorasExtrasController controller = new CalculoHorasExtrasController(model, view);
+                new CalculoHorasExtrasController(model, view);
 
                 // Exibe a interface gráfica
                 view.setVisible(true);
