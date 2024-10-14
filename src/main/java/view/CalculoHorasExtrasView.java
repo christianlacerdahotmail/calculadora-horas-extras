@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class CalculoHorasExtrasView extends JFrame {
     private final JTextField txtSalarioBruto;
@@ -28,7 +29,7 @@ public class CalculoHorasExtrasView extends JFrame {
         setLocationRelativeTo(null);
 
         // Definindo o ícone da janela
-        ImageIcon imgIcon = new ImageIcon(getClass().getResource("/icons/logo.png"));
+        ImageIcon imgIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/logo.png")));
         setIconImage(imgIcon.getImage());
 
         // Criando o painel de abas
