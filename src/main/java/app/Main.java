@@ -4,7 +4,11 @@ import model.CalculoHorasExtrasModel;
 import view.CalculoHorasExtrasView;
 import controller.CalculoHorasExtrasController;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Main {
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
     public static void main(String[] args) {
         // Executa o código na thread da GUI
         javax.swing.SwingUtilities.invokeLater(() -> {
@@ -17,7 +21,8 @@ public class Main {
                 // Exibe a interface gráfica
                 view.setVisible(true);
             } catch (Exception e) {
-                e.printStackTrace();
+                // Substitui o printStackTrace() por um logger
+                logger.log(Level.SEVERE, "Erro ao inicializar a aplicação: ", e);
             }
         });
     }
