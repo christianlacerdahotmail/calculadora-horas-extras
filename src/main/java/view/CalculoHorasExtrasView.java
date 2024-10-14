@@ -4,17 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CalculoHorasExtrasView extends JFrame {
-    private JTextField txtSalarioBruto;
-    private JTextField txtHorasExtras;
-    private JTextField txtJornadaMensal;
-    private JButton btnCalcular;
-    private JLabel lblResultado;
-    private JRadioButton radio50;
-    private JRadioButton radio100;
-    private ButtonGroup grupoPercentual;
+    private final JTextField txtSalarioBruto;
+    private final JTextField txtHorasExtras;
+    private final JTextField txtJornadaMensal;
+    private final JButton btnCalcular;
+    private final JLabel lblResultado;
+    private final JRadioButton radio50;
+    private final JRadioButton radio100;
 
     // Elementos da nova aba para cálculo de valor de horas extras
-    private JTextField txtSalarioBrutoNovo;
+    private final JTextField txtSalarioBrutoNovo;
     private JTextField txtJornadaMensalNovo;
     private JTextField txtHorasTrabalhadasNovo;
     private JButton btnCalcularValorHorasExtras;
@@ -56,7 +55,7 @@ public class CalculoHorasExtrasView extends JFrame {
         JPanel percentualPanel = new JPanel();
         radio50 = new JRadioButton("50%", true);
         radio100 = new JRadioButton("100%");
-        grupoPercentual = new ButtonGroup();
+        ButtonGroup grupoPercentual = new ButtonGroup();
         grupoPercentual.add(radio50);
         grupoPercentual.add(radio100);
         percentualPanel.add(radio50);

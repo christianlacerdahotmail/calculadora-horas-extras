@@ -1,10 +1,10 @@
 package model;
 
 public class CalculoHorasExtrasModel {
-    private double salarioBruto;
-    private double horasExtrasValor;
-    private double jornadaMensal;
-    private double percentual;
+    private final double salarioBruto;
+    private final double horasExtrasValor;
+    private final double jornadaMensal;
+    private final double percentual;
 
     public CalculoHorasExtrasModel(double salarioBruto, double horasExtrasValor, double jornadaMensal, double percentual) {
         this.salarioBruto = salarioBruto;
