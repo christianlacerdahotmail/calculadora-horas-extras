@@ -10,7 +10,7 @@ import java.text.ParseException;
 
 public class CalculoHorasExtrasController {
     private CalculoHorasExtrasModel model;
-    private CalculoHorasExtrasView view;
+    private final CalculoHorasExtrasView view;
 
     public CalculoHorasExtrasController(CalculoHorasExtrasModel model, CalculoHorasExtrasView view) {
         this.model = model;
@@ -20,35 +20,32 @@ public class CalculoHorasExtrasController {
 
     private void initController() {
         // Listener para o cálculo de quantidade de horas extras (primeira aba)
-        view.getBtnCalcular().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    // Obtém os valores da primeira aba
-                    double salarioBruto = Utils.parseStringToDouble(view.getSalarioBruto());
-                    double horasExtrasValor = Utils.parseStringToDouble(view.getHorasExtras());
-                    double jornadaMensal = Utils.parseStringToDouble(view.getJornadaMensal());
+        view.getBtnCalcular().addActionListener(e -> {
+            try {
+                // Obtém os valores da primeira aba
+                double salarioBruto = Utils.parseStringToDouble(view.getSalarioBruto());
+                double horasExtrasValor = Utils.parseStringToDouble(view.getHorasExtras());
+                double jornadaMensal = Utils.parseStringToDouble(view.getJornadaMensal());
 
-                    // Verifica se o usuário escolheu 50% ou 100%
-                    double percentual;
-                    if (view.isPercentual50()) {
-                        percentual = 50;
-                    } else if (view.isPercentual100()) {
-                        percentual = 100;
-                    } else {
-                        view.setResultado("Selecione o percentual de horas extras.");
-                        return;
-                    }
-
-                    // Atualiza o model com os valores da primeira aba
-                    model = new CalculoHorasExtrasModel(salarioBruto, horasExtrasValor, jornadaMensal, percentual);
-
-                    // Calcula o número de horas extras
-                    double resultadoHorasExtras = model.calcularHorasExtras();
-                    view.setResultado(String.format("%.2f", resultadoHorasExtras) + " horas");
-                } catch (ParseException ex) {
-                    view.setResultado("Erro no formato dos números");
+                // Verifica se o usuário escolheu 50% ou 100%
+                double percentual;
+                if (view.isPercentual50()) {
+                    percentual = 50;
+                } else if (view.isPercentual100()) {
+                    percentual = 100;
+                } else {
+                    view.setResultado("Selecione o percentual de horas extras.");
+                    return;
                 }
+
+                // Atualiza o model com os valores da primeira aba
+                model = new CalculoHorasExtrasModel(salarioBruto, horasExtrasValor, jornadaMensal, percentual);
+
+                // Calcula o número de horas extras
+                double resultadoHorasExtras = model.calcularHorasExtras();
+                view.setResultado(String.format("%.2f", resultadoHorasExtras) + " horas");
+            } catch (ParseException ex) {
+                view.setResultado("Erro no formato dos números");
             }
         });
 
