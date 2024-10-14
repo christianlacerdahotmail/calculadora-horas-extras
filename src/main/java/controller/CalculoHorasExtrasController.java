@@ -50,40 +50,37 @@ public class CalculoHorasExtrasController {
         });
 
         // Listener para o cálculo do valor das horas extras (segunda aba)
-        view.getBtnCalcularValorHorasExtras().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    // Obtém os valores da segunda aba
-                    double salarioBrutoNovo = Utils.parseStringToDouble(view.getSalarioBrutoNovo());
-                    double jornadaMensalNovo = Utils.parseStringToDouble(view.getJornadaMensalNovo());
-                    double horasTrabalhadasNovo = Utils.parseStringToDouble(view.getHorasTrabalhadasNovo());
+        view.getBtnCalcularValorHorasExtras().addActionListener(e -> {
+            try {
+                // Obtém os valores da segunda aba
+                double salarioBrutoNovo = Utils.parseStringToDouble(view.getSalarioBrutoNovo());
+                double jornadaMensalNovo = Utils.parseStringToDouble(view.getJornadaMensalNovo());
+                double horasTrabalhadasNovo = Utils.parseStringToDouble(view.getHorasTrabalhadasNovo());
 
-                    // Verifica se o usuário escolheu 50% ou 100% na segunda aba
-                    double percentual;
-                    if (view.isPercentual50Novo()) {
-                        percentual = 0.5; // 50%
-                    } else if (view.isPercentual100Novo()) {
-                        percentual = 1.0; // 100%
-                    } else {
-                        view.setResultadoNovo("Selecione o percentual de horas extras.");
-                        return;
-                    }
-
-                    // Cálculo do valor da hora
-                    double valorHora = salarioBrutoNovo / jornadaMensalNovo;
-
-                    // Cálculo do valor das horas extras
-                    double valorHoraExtra = valorHora * (1 + percentual);
-
-                    // Multiplica pelo número de horas extras trabalhadas
-                    double totalValorHorasExtras = valorHoraExtra * horasTrabalhadasNovo;
-
-                    // Exibe o resultado na segunda aba
-                    view.setResultadoNovo(String.format("R$ %.2f", totalValorHorasExtras));
-                } catch (ParseException ex) {
-                    view.setResultadoNovo("Erro no formato dos números.");
+                // Verifica se o usuário escolheu 50% ou 100% na segunda aba
+                double percentual;
+                if (view.isPercentual50Novo()) {
+                    percentual = 0.5; // 50%
+                } else if (view.isPercentual100Novo()) {
+                    percentual = 1.0; // 100%
+                } else {
+                    view.setResultadoNovo("Selecione o percentual de horas extras.");
+                    return;
                 }
+
+                // Cálculo do valor da hora
+                double valorHora = salarioBrutoNovo / jornadaMensalNovo;
+
+                // Cálculo do valor das horas extras
+                double valorHoraExtra = valorHora * (1 + percentual);
+
+                // Multiplica pelo número de horas extras trabalhadas
+                double totalValorHorasExtras = valorHoraExtra * horasTrabalhadasNovo;
+
+                // Exibe o resultado na segunda aba
+                view.setResultadoNovo(String.format("R$ %.2f", totalValorHorasExtras));
+            } catch (ParseException ex) {
+                view.setResultadoNovo("Erro no formato dos números.");
             }
         });
     }
